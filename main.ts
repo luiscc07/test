@@ -1,18 +1,74 @@
-let mySprite = sprites.create(img`
-    . . . . . . . . . b 5 b . . . . 
-    . . . . . . . . . b 5 b . . . . 
-    . . . . . . b b b b b b . . . . 
-    . . . . . b b 5 5 5 5 5 b . . . 
-    . . . . b b 5 b c 5 5 d 4 c . . 
-    . b b b b 5 5 5 b f d d 4 4 4 b 
-    . b d 5 b 5 5 b c b 4 4 4 4 b . 
-    . . b 5 5 b 5 5 5 4 4 4 4 b . . 
-    . . b d 5 5 b 5 5 5 5 5 5 b . . 
-    . b d b 5 5 5 d 5 5 5 5 5 5 b . 
-    b d d c d 5 5 b 5 5 5 5 5 5 b . 
-    c d d d c c b 5 5 5 5 5 5 5 b . 
-    c b d d d d d 5 5 5 5 5 5 5 b . 
-    . c d d d d d d 5 5 5 5 5 d b . 
-    . . c b d d d d d 5 5 5 b b . . 
-    . . . c c c c c c c c b b . . . 
+game.splash("Hello, Savior")
+tiles.setCurrentTilemap(tilemap`level1`)
+let Attacker = sprites.create(img`
+    .......ff...............
+    ....ffff2ff.............
+    ..ffeeeef2ff............
+    .ffeeeeef22ff...........
+    .feeeeffeeeef...........
+    .fffffee2222ef..........
+    fffe222ffffe2f..........
+    ffffffffeeefff..........
+    fefe44ebf44eef..........
+    .fee4d4bfddef...........
+    ..feee4dddee.c..........
+    ...f2222eeddeccccccc....
+    ...f444e44ddecddddd.....
+    ...fffffeeee.ccccc......
+    ..ffffffff...c..........
+    ..fff..ff...............
+    ........................
+    ........................
+    ........................
+    ........................
+    ........................
+    ........................
+    ........................
+    ........................
     `, SpriteKind.Player)
+controller.moveSprite(Attacker, 100, 100)
+tiles.placeOnTile(Attacker, tiles.getTileLocation(9, 0))
+Attacker.setStayInScreen(true)
+let Defender = sprites.create(img`
+    . . . . . . f f f f . . . . . . 
+    . . . . f f f 2 2 f f f . . . . 
+    . . . f f f 2 2 2 2 f f f . . . 
+    . . f f f e e e e e e f f f . . 
+    . . f f e 2 2 2 2 2 2 e e f . . 
+    . . f e 2 f f f f f f 2 e f . . 
+    . . f f f f e e e e f f f f . . 
+    . f f e f b f 4 4 f b f e f f . 
+    . f e e 4 1 f d d f 1 4 e e f . 
+    . . f e e d d d d d d e e f . . 
+    . . . f e e 4 4 4 4 e e f . . . 
+    . . e 4 f 2 2 2 2 2 2 f 4 e . . 
+    . . 4 d f 2 2 2 2 2 2 f d 4 . . 
+    . . 4 4 f 4 4 5 5 4 4 f 4 4 . . 
+    . . . . . f f f f f f . . . . . 
+    . . . . . f f . . f f . . . . . 
+    `, SpriteKind.Player)
+controller.player2.moveSprite(Defender, 100, 100)
+tiles.placeOnTile(Defender, tiles.getTileLocation(11, 0))
+Defender.setStayInScreen(true)
+let FollowCamera = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . 3 . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Player)
+scene.cameraFollowSprite(FollowCamera)
+game.onUpdate(function () {
+    FollowCamera.setPosition((Attacker.x + Defender.x) / 2, (Attacker.y + Defender.y) / 2)
+})
