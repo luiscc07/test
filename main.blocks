@@ -1,38 +1,4 @@
-<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable type="KIND_SpriteKind" id="5O*x+%j^wg;n]irASxDD">Player</variable><variable type="KIND_SpriteKind" id=":=#SquD2MAaxz6;3a;h;">Projectile</variable><variable type="KIND_SpriteKind" id="g*?..X~!]IgQA-9gpJ1-">Food</variable><variable type="KIND_SpriteKind" id="ym#/j}qlyDJHu80@mX.%">Enemy</variable><variable id="%bC?1{GoadcJ!H}a:L@S">Defender</variable><variable id="J:T7IZ$Vdh?7|4[[gkz7">Attacker</variable><variable id="AF*h|9RpNR@-XKVDYP:q">mySprite</variable></variables><block type="pxt-on-start" id="q@iFOqt.55Xwe`B2dZhf" x="-530" y="-190"><statement name="HANDLER"><block type="variables_set" id="9tz;6;E)gbn@SO3L9(U8"><field name="VAR" id="J:T7IZ$Vdh?7|4[[gkz7">Attacker</field><value name="VALUE"><shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number"><field name="NUM">0</field></shadow><block type="spritescreate" id="B@!X/LRipM~Dl5Z=lqO?"><value name="img"><shadow type="screen_image_picker" id="uSh5^/l!}gkj,*e(3YCv"><field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`</field><data>{"commentRefs":[],"fieldData":{"img":"uSh5^/l!}gkj,*e(3YCv"}}</data></shadow></value><value name="kind"><shadow type="spritekind" id="~U!MF}H.2r|FsxR:PBw?"><field name="MEMBER">Player</field></shadow></value></block></value><next><block type="variables_set" id="C+TC,$e*Nz?Ts8a~By[C"><field name="VAR" id="%bC?1{GoadcJ!H}a:L@S">Defender</field><value name="VALUE"><shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number"><field name="NUM">0</field></shadow><block type="spritescreate" id="b%)p{x]1y~ihYo67427/"><value name="img"><shadow type="screen_image_picker" id="E$tl-IlSia=LVEMn9`Ab"><field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`</field><data>{"commentRefs":[],"fieldData":{"img":"E$tl-IlSia=LVEMn9`Ab"}}</data></shadow></value><value name="kind"><shadow type="spritekind" id="%C?C5h2+HvILZ+WYc298"><field name="MEMBER">Player</field></shadow></value></block></value></block></next></block></statement></block><block type="ctrlonevent" id="b7kl%uE(49^LXUnpMAbF" x="0" y="0"><field name="controller">controller.player1</field><field name="event">ControllerEvent.Connected</field><statement name="HANDLER"><block type="game_show_long_text" id="n0k9`_QM^~oLQB9lNW3/"><field name="layout">DialogLayout.Top</field><value name="str"><shadow type="text" id="{#9)g}EgKcd4A7%UlfFW"><field name="TEXT">SELECT CLASS</field></shadow></value><next><block type="controls_if" id="_Jc;FF#D40T,GHBWpVBZ"><value name="IF0"><shadow type="logic_boolean" id=",c|fg#=},)BqL8sl])Rq"><field name="BOOL">TRUE</field></shadow><block type="keyispressed" id="o:j|o%3|4EhIfE@BFc!2"><field name="button">controller.anyButton</field></block></value><statement name="DO0"><block type="game_show_long_text" id="nI/1JX[)[bOut%Jbn2|/"><field name="layout">DialogLayout.Top</field><value name="str"><shadow type="text" id="eR}`Z]-+(s3t.XkbAM9V"><field name="TEXT">A : ATTACKER</field></shadow></value><next><block type="game_show_long_text" id="loDBFTDA*ETA1N:?1RYD"><field name="layout">DialogLayout.Top</field><value name="str"><shadow type="text" id="6/60)5f(?EUHA[nVIXbw"><field name="TEXT">Down : DEFENDER</field></shadow></value><next><block type="controls_if" id="(fKDR,@F(tKQT3xQR6d3"><value name="IF0"><shadow type="logic_boolean" id="jH?0j$;1~|1KWO|(~_/,"><field name="BOOL">TRUE</field></shadow><block type="keyispressed" id="`YUmdmB0DAi~,)Ipf|{6"><field name="button">controller.A</field></block></value><statement name="DO0"><block type="variables_set" id="(:ZTtZvN[]}x8[~T#;`l"><field name="VAR" id="J:T7IZ$Vdh?7|4[[gkz7">Attacker</field><value name="VALUE"><shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number"><field name="NUM">0</field></shadow><block type="spritescreate" id="]lQy/Q$m0AM.k?$c%$}y"><value name="img"><shadow type="screen_image_picker" id="1?LgT9RIr1e5e)i0.!H["><field name="img">img`
+<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable type="KIND_SpriteKind" id="5O*x+%j^wg;n]irASxDD">Player</variable><variable type="KIND_SpriteKind" id=":=#SquD2MAaxz6;3a;h;">Projectile</variable><variable type="KIND_SpriteKind" id="g*?..X~!]IgQA-9gpJ1-">Food</variable><variable type="KIND_SpriteKind" id="ym#/j}qlyDJHu80@mX.%">Enemy</variable><variable id="%bC?1{GoadcJ!H}a:L@S">Defender</variable><variable id="J:T7IZ$Vdh?7|4[[gkz7">Attacker</variable><variable id="AF*h|9RpNR@-XKVDYP:q">mySprite</variable></variables><block type="ctrlonevent" id="b7kl%uE(49^LXUnpMAbF" x="-410" y="-50"><field name="controller">controller.player1</field><field name="event">ControllerEvent.Connected</field><statement name="HANDLER"><block type="game_show_long_text" id="n0k9`_QM^~oLQB9lNW3/"><field name="layout">DialogLayout.Top</field><value name="str"><shadow type="text" id="{#9)g}EgKcd4A7%UlfFW"><field name="TEXT">SELECT CLASS</field></shadow></value><next><block type="controls_if" id="_Jc;FF#D40T,GHBWpVBZ"><value name="IF0"><shadow type="logic_boolean" id=",c|fg#=},)BqL8sl])Rq"><field name="BOOL">TRUE</field></shadow><block type="keyispressed" id="o:j|o%3|4EhIfE@BFc!2"><field name="button">controller.anyButton</field></block></value><statement name="DO0"><block type="game_show_long_text" id="nI/1JX[)[bOut%Jbn2|/"><field name="layout">DialogLayout.Top</field><value name="str"><shadow type="text" id="eR}`Z]-+(s3t.XkbAM9V"><field name="TEXT">A : ATTACKER</field></shadow></value><next><block type="game_show_long_text" id="loDBFTDA*ETA1N:?1RYD"><field name="layout">DialogLayout.Top</field><value name="str"><shadow type="text" id="6/60)5f(?EUHA[nVIXbw"><field name="TEXT">Down : DEFENDER</field></shadow></value><next><block type="controls_if" id="(fKDR,@F(tKQT3xQR6d3"><value name="IF0"><shadow type="logic_boolean" id="jH?0j$;1~|1KWO|(~_/,"><field name="BOOL">TRUE</field></shadow><block type="keyispressed" id="`YUmdmB0DAi~,)Ipf|{6"><field name="button">controller.A</field></block></value><statement name="DO0"><block type="variables_set" id="(:ZTtZvN[]}x8[~T#;`l"><field name="VAR" id="J:T7IZ$Vdh?7|4[[gkz7">Attacker</field><value name="VALUE"><shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number"><field name="NUM">0</field></shadow><block type="spritescreate" id="]lQy/Q$m0AM.k?$c%$}y"><value name="img"><shadow type="screen_image_picker" id="1?LgT9RIr1e5e)i0.!H["><field name="img">img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
