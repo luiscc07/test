@@ -19,6 +19,7 @@ function Menu () {
             myMenu3.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.BorderColor, 15)
             myMenu3.onButtonPressed(controller.A, function (selection, selectedIndex) {
                 if (selectedIndex == MENU2.length - 1) {
+                    myMenu3.close()
                     myMenu2 = miniMenu.createMenuFromArray([miniMenu.createMenuItem("ATTACKER", img`
                         .......ff...............
                         ....ffff2ff.............
