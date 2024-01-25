@@ -7,7 +7,8 @@
         "controller": "*",
         "arcade-text": "github:microsoft/arcade-text#v1.3.0",
         "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.2",
-        "arcade-mini-menu": "github:riknoll/arcade-mini-menu#96cf1014271246d15b85368b45f298bd8c6609c4"
+        "arcade-mini-menu": "github:riknoll/arcade-mini-menu#96cf1014271246d15b85368b45f298bd8c6609c4",
+        "animation": "*"
     },
     "files": [
         "main.blocks",
