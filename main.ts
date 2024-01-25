@@ -97,7 +97,6 @@ function Menu () {
                                 `, SpriteKind.Player)
                             controller.player1.moveSprite(Defender)
                             if (true) {
-                                STATUSATACK = statusbars.create(15, 4, StatusBarKind.Energy)
                                 STATUSDEF = statusbars.create(15, 4, StatusBarKind.Energy)
                                 STATUSDEF.attachToSprite(Defender)
                                 STATUSDEF.value = 100
@@ -144,9 +143,9 @@ function Menu () {
         }
     })
 }
+let STATUSATACK: StatusBarSprite = null
 let Attacker: Sprite = null
 let STATUSDEF: StatusBarSprite = null
-let STATUSATACK: StatusBarSprite = null
 let Defender: Sprite = null
 let myMenu2: miniMenu.MenuSprite = null
 let myMenu3: miniMenu.MenuSprite = null
