@@ -75,7 +75,7 @@ function Menu () {
                     myMenu2.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Background, 0)
                     myMenu2.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.BorderColor, 15)
                     myMenu2.onButtonPressed(controller.A, function (selection, selectedIndex) {
-                        if (selectedIndex == MENU2.length - 1) {
+                        if (selectedIndex == MENU3.length - 1) {
                             myMenu2.close()
                             Defender = sprites.create(img`
                                 . . . . . . . . . . . . . . . . 
@@ -97,7 +97,7 @@ function Menu () {
                                 `, SpriteKind.Player)
                             controller.player1.moveSprite(Defender)
                         }
-                        if (selectedIndex == MENU2.length - 2) {
+                        if (selectedIndex == MENU3.length - 2) {
                             myMenu2.close()
                             Attacker = sprites.create(img`
                                 .......ff...............
