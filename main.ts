@@ -96,6 +96,12 @@ function Menu () {
                                 . . . . f f . . . f f f . . . . 
                                 `, SpriteKind.Player)
                             controller.player1.moveSprite(Defender)
+                            if (true) {
+                                STATUSATACK = statusbars.create(15, 4, StatusBarKind.Energy)
+                                STATUSDEF = statusbars.create(15, 4, StatusBarKind.Energy)
+                                STATUSDEF.attachToSprite(Defender)
+                                STATUSDEF.value = 100
+                            }
                         }
                         if (selectedIndex == MENU3.length - 2) {
                             myMenu2.close()
@@ -126,6 +132,11 @@ function Menu () {
                                 ........................
                                 `, SpriteKind.Player)
                             controller.player1.moveSprite(Attacker)
+                            if (true) {
+                                STATUSATACK = statusbars.create(15, 4, StatusBarKind.Energy)
+                                STATUSATACK.attachToSprite(Attacker)
+                                STATUSATACK.value = 100
+                            }
                         }
                     })
                 }
@@ -134,6 +145,8 @@ function Menu () {
     })
 }
 let Attacker: Sprite = null
+let STATUSDEF: StatusBarSprite = null
+let STATUSATACK: StatusBarSprite = null
 let Defender: Sprite = null
 let myMenu2: miniMenu.MenuSprite = null
 let myMenu3: miniMenu.MenuSprite = null
