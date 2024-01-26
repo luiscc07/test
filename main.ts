@@ -80,13 +80,13 @@ Attacker = sprites.create(img`
     ........................
     `, SpriteKind.Player)
 controller.moveSprite(Attacker)
-Damage = 1
+Damage = 4
 HP = statusbars.create(20, 4, StatusBarKind.Health)
 HP.setLabel("HP")
 HP.attachToSprite(Attacker)
 HP.value = 100
 HP.max = 100
-game.onUpdateInterval(5000, function () {
+game.onUpdateInterval(2000, function () {
     ALIEN = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . 3 3 3 3 . . . . . . . 
