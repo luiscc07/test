@@ -5,7 +5,7 @@ function HP2 (num: number, mySprite: Sprite) {
     if (HP.value == 100) {
         HP.setColor(7, 7, 2)
     }
-    if (HP.value == 50) {
+    if (HP.value < 50) {
         HP.setColor(4, 2, 2)
     }
     if (HP.value == 0) {
