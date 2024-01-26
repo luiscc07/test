@@ -402,6 +402,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     ApplyDamage(HP.value, Damage, Attacker)
     HP2(1, Attacker)
 })
+let EnemySpawn: number[] = []
 let ALIEN: Sprite = null
 let ENEMY_HP: StatusBarSprite = null
 let HP: StatusBarSprite = null
@@ -409,6 +410,7 @@ let Damage = 0
 let PLAYERDAM = 0
 let chargeLevel = 0
 let Attacker: Sprite = null
+let Enemy1 = null
 Attacker = sprites.create(img`
     ........................
     ....ffffff..............
@@ -436,6 +438,10 @@ Attacker = sprites.create(img`
     ........................
     `, SpriteKind.Player)
 controller.moveSprite(Attacker)
+effects.blizzard.startScreenEffect()
+tiles.setCurrentTilemap(tilemap`level3`)
+scene.cameraFollowSprite(Attacker)
+tiles.placeOnTile(Attacker, tiles.getTileLocation(10, 3))
 chargeLevel = 0
 PLAYERDAM = 10
 Damage = 5
@@ -444,35 +450,37 @@ HP.setLabel("HP")
 HP.attachToSprite(Attacker)
 HP.value = 100
 HP.max = 100
-let CHARGE = statusbars.create(10, 4, StatusBarKind.CHARGE)
-CHARGE.setLabel("ATK")
-CHARGE.attachToSprite(Attacker)
-CHARGE.value = chargeLevel
-CHARGE.max = 10
-CHARGE.positionDirection(CollisionDirection.Bottom)
-game.onUpdateInterval(2000, function () {
+let CHARGE2 = statusbars.create(10, 4, StatusBarKind.CHARGE)
+CHARGE2.setLabel("ATK")
+CHARGE2.attachToSprite(Attacker)
+CHARGE2.value = chargeLevel
+CHARGE2.max = 10
+CHARGE2.positionDirection(CollisionDirection.Bottom)
+ENEMY_HP = statusbars.create(20, 4, StatusBarKind.Health)
+ENEMY_HP.value = 50
+ENEMY_HP.attachToSprite(ALIEN)
+ENEMY_HP.setLabel("HP")
+game.onUpdateInterval(10000, function () {
     ALIEN = sprites.create(img`
         . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
         . . . . . 3 3 3 3 . . . . . . . 
-        . . . 3 3 . . . . 3 3 . . . . . 
-        . . 3 3 . . . . . . . 3 . . . . 
-        3 3 . . . . . . . . . 3 . . . . 
-        3 3 . . . . . . . . . . 3 . . . 
-        3 3 . . . . . . . . . . . 3 . . 
-        . 3 . . . . . . . . . . . 3 . . 
-        . 3 . . . . . . . . . . . 3 . . 
-        . . 3 . . . . . . . . . . 3 . . 
-        . . 3 . . . . . . . . . 3 . . . 
-        . . . 3 . . . . . . . 3 . . . . 
-        . . . . 3 3 3 3 3 3 3 . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Enemy)
-    ALIEN.follow(Attacker, 10)
-    ALIEN.setPosition(160, randint(30, 90))
-    ENEMY_HP = statusbars.create(20, 4, StatusBarKind.Health)
-    ENEMY_HP.value = 50
-    ENEMY_HP.attachToSprite(ALIEN)
-    ENEMY_HP.setLabel("HP")
+        . . . . 3 e e e e e . . . . . . 
+        . . . 3 e e f e e e 3 . . . . . 
+        . . . 3 b e e e e b b . . . . . 
+        . 3 3 3 1 e e 1 e e 3 . . . . . 
+        3 e e 3 e e e 1 1 e 3 . . . . . 
+        . 3 3 3 e 1 e e 1 e f 3 . . . . 
+        . . 3 f 1 1 1 e e e 3 . . . . . 
+        . . 3 e e 1 1 1 e e 3 3 . . . . 
+        . . 3 3 e e 1 e e 3 e b 3 . . . 
+        . . . 3 e e b e f 3 e e 3 . . . 
+        . . 3 3 f e e e e e 3 3 . . . . 
+        . 3 3 e e e e e e e e 3 3 . . . 
+        . 3 b e e 3 3 e 3 e f e 3 . . . 
+        `, SpriteKind.Player)
+    ALIEN.startEffect(effects.blizzard, 500)
+    ALIEN.follow(Attacker, 20)
+    EnemySpawn = [0, 1]
+    ALIEN.setPosition(randint(0, scene.screenWidth()), 0)
 })
