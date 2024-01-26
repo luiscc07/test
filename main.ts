@@ -6,6 +6,12 @@ enum ActionKind {
 namespace SpriteKind {
     export const DEAD = SpriteKind.create()
 }
+namespace StatusBarKind {
+    export const CHARGE = StatusBarKind.create()
+}
+function CHARGEVISUAL (mySprite: Sprite, num: number) {
+	
+}
 function ENEMYHP (num: number, mySprite: Sprite) {
     if (ENEMY_HP.value == 50) {
         ENEMY_HP.setColor(7, 7)
@@ -17,6 +23,10 @@ function ENEMYHP (num: number, mySprite: Sprite) {
         ENEMY_HP.setColor(2, 2)
     }
 }
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    PLAYERDAM = PLAYERDAM + 2
+    chargeLevel = 0
+})
 controller.player1.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
     if (HP.value > 0) {
         animation.runImageAnimation(
@@ -95,6 +105,9 @@ controller.player1.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
         )
     }
 })
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    chargeLevel = chargeLevel + 1
+})
 function ENEMYTAKEDAMAGE (num: number, num2: number, mySprite: Sprite) {
     ENEMY_HP.value = ENEMY_HP.value - PLAYERDAM
     if (ENEMY_HP.value == 0) {
@@ -102,6 +115,7 @@ function ENEMYTAKEDAMAGE (num: number, num2: number, mySprite: Sprite) {
     }
 }
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
+    let SLASH: Sprite = null
     sprites.destroy(SLASH)
     ENEMYTAKEDAMAGE(ENEMY_HP.value, PLAYERDAM, ALIEN)
     ENEMYHP(1, ALIEN)
@@ -183,26 +197,6 @@ controller.player1.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.P
         false
         )
     }
-})
-controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
-    SLASH = sprites.createProjectileFromSprite(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . 1 1 3 . . . . . . 
-        . . . . . . 1 3 . 3 3 . . . . . 
-        . . . . . . 1 . . . 3 2 2 3 . . 
-        . . . . . 1 3 . . . 2 2 1 3 3 . 
-        . . . . . 1 3 . 2 2 3 1 1 1 3 . 
-        . . 2 2 2 1 3 3 3 3 3 1 1 1 3 . 
-        . . 1 1 1 1 3 1 1 1 1 1 1 1 3 . 
-        . . 2 2 2 1 3 3 3 3 3 1 1 1 3 . 
-        . . . . . 1 3 . 2 2 3 1 1 1 3 . 
-        . . . . . 1 3 . . . 2 2 1 3 3 . 
-        . . . . . . 1 . . . 3 2 2 3 . . 
-        . . . . . . 1 3 . 3 3 . . . . . 
-        . . . . . . . 1 1 3 . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, Attacker, 50, 0)
 })
 function HP2 (num: number, mySprite: Sprite) {
     if (HP.value == 100) {
@@ -408,12 +402,12 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     ApplyDamage(HP.value, Damage, Attacker)
     HP2(1, Attacker)
 })
-let SLASH: Sprite = null
 let ALIEN: Sprite = null
 let ENEMY_HP: StatusBarSprite = null
 let HP: StatusBarSprite = null
 let Damage = 0
 let PLAYERDAM = 0
+let chargeLevel = 0
 let Attacker: Sprite = null
 Attacker = sprites.create(img`
     ........................
@@ -442,13 +436,20 @@ Attacker = sprites.create(img`
     ........................
     `, SpriteKind.Player)
 controller.moveSprite(Attacker)
+chargeLevel = 0
 PLAYERDAM = 10
 Damage = 5
-HP = statusbars.create(20, 4, StatusBarKind.Health)
+HP = statusbars.create(10, 4, StatusBarKind.Health)
 HP.setLabel("HP")
 HP.attachToSprite(Attacker)
 HP.value = 100
 HP.max = 100
+let CHARGE = statusbars.create(10, 4, StatusBarKind.CHARGE)
+CHARGE.setLabel("ATK")
+CHARGE.attachToSprite(Attacker)
+CHARGE.value = chargeLevel
+CHARGE.max = 10
+CHARGE.positionDirection(CollisionDirection.Bottom)
 game.onUpdateInterval(2000, function () {
     ALIEN = sprites.create(img`
         . . . . . . . . . . . . . . . . 
