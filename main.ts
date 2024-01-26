@@ -86,7 +86,7 @@ HP.setLabel("HP")
 HP.attachToSprite(Attacker)
 HP.value = 100
 HP.max = 100
-game.onUpdateInterval(1000, function () {
+game.onUpdateInterval(5000, function () {
     ALIEN = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . 3 3 3 3 . . . . . . . 
