@@ -1,18 +1,20 @@
 namespace SpriteKind {
     export const DEAD = SpriteKind.create()
 }
-statusbars.onStatusReached(StatusBarKind.Health, statusbars.StatusComparison.LTE, statusbars.ComparisonType.Percentage, 50, function (status) {
-    HP.setColor(7, 5)
-})
 function HP2 (num: number, mySprite: Sprite) {
-    HP.value = num
-    if (num > 0) {
-        HP.setColor(0, 7)
+    if (HP.value == 100) {
+        HP.setColor(7, 7, 2)
+    }
+    if (HP.value == 50) {
+        HP.setColor(4, 2, 2)
+    }
+    if (HP.value == 0) {
+        HP.setColor(2, 2, 2)
     }
 }
 function ApplyDamage (num: number, num2: number, mySprite: Sprite) {
     HP.value = HP.value - Damage
-    if (HP.value < 0) {
+    if (HP.value == 0) {
         sprites.destroy(Attacker)
         Attacker = sprites.create(img`
             ........................
@@ -45,6 +47,7 @@ function ApplyDamage (num: number, num2: number, mySprite: Sprite) {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(ALIEN)
     ApplyDamage(HP.value, Damage, Attacker)
+    HP2(1, Attacker)
 })
 let ALIEN: Sprite = null
 let HP: StatusBarSprite = null
@@ -77,14 +80,13 @@ Attacker = sprites.create(img`
     ........................
     `, SpriteKind.Player)
 controller.moveSprite(Attacker)
-Damage = 5
+Damage = 1
 HP = statusbars.create(20, 4, StatusBarKind.Health)
 HP.setLabel("HP")
 HP.attachToSprite(Attacker)
 HP.value = 100
 HP.max = 100
-HP2(1, Attacker)
-game.onUpdateInterval(50000, function () {
+game.onUpdateInterval(1000, function () {
     ALIEN = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . 3 3 3 3 . . . . . . . 
